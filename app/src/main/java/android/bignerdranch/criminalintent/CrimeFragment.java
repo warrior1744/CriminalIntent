@@ -61,6 +61,7 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
     private static final String DIALOG_PHOTO = "DialogPhoto"; //Challenge Detailed image
+
     /**
      * Challenge:More Dialogs
      */
