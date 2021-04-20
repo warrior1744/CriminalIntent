@@ -65,7 +65,6 @@ public class CrimeFragment extends Fragment {
     /**
      * Challenge:More Dialogs
      */
-
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_TIME = 10;
     /**
