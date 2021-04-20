@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+ <string name="crime_title_hint">
+        Please Enter a meaningful, memorable info for the crime.
+    </string>
+
+</resources>

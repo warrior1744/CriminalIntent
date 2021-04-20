@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Listing 17.3 Creating a default alias resource value-->
+<resources>
+    <item name="activity_masterdetail" type="layout">@layout/activity_fragment</item>
+
+</resources>
