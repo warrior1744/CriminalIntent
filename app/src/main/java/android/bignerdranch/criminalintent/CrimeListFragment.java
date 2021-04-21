@@ -52,6 +52,7 @@ public class CrimeListFragment extends Fragment {
      * Required interface for hosting activities
      */
     public interface Callbacks { //Listing 17.6 Adding callback interface
+        /**This is an abstract method*/
         void onCrimeSelected(Crime crime, int requestCode);
     }
 
