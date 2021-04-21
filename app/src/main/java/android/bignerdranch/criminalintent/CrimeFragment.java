@@ -255,6 +255,7 @@ public class CrimeFragment extends Fragment {
                 i.putExtra(Intent.EXTRA_SUBJECT,
                         getString(R.string.crime_report_subject));
                 i = Intent.createChooser(i, getString(R.string.send_report));
+               // i.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
                 startActivity(i);
             }
         });
@@ -271,8 +272,6 @@ public class CrimeFragment extends Fragment {
                 builder.startChooser();
             }
         });
-
-
 
 
         //Listing 15.12 Sending an implicit intent

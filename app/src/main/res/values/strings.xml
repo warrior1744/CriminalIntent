@@ -21,7 +21,7 @@
     <string name="subtitle_format">no crime</string>
     <string name="delete_crime">Delete Crime</string>
 
-    <plurals name ="subtitle_plural">
+    <plurals name="subtitle_plural">
         <item quantity="one">%1$d crime</item>
         <item quantity="other">%1$d crimes</item>
     </plurals>
