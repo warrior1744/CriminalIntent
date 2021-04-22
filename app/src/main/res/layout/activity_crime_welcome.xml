@@ -6,11 +6,16 @@
     android:padding="16dp">
 
 
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-    android:src="@drawable/criminal"
-    android:visibility="visible"
-      android:scaleType="fitCenter"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/criminal"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/api"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -158,7 +158,6 @@ public class CrimeListFragment extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(mAdapter));
         itemTouchHelper.attachToRecyclerView(mCrimeRecyclerView);
 
-
         return view;
     }
 
