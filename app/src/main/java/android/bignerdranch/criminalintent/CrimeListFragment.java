@@ -34,7 +34,7 @@ public class CrimeListFragment extends Fragment {
     private static final int REQUEST_CRIME_SERIOUS = 2;
 
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
-
+    private static final String TAG = "CrimeListFragment";
 
     /**
      * We use getAdapterPosition for the current item position of the recycler view.
@@ -194,7 +194,6 @@ public class CrimeListFragment extends Fragment {
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
 
         private List<Crime> mCrimes;
-
         public CrimeAdapter(List<Crime> crimes) {
             mCrimes = crimes;
         }
@@ -227,7 +226,6 @@ public class CrimeListFragment extends Fragment {
          */
         @Override
         public int getItemViewType(int position) {
-
             if (mCrimes.get(position).isSerious()) {
                 return 0;
             } else {
@@ -237,25 +235,20 @@ public class CrimeListFragment extends Fragment {
 
         public void setCrimes(List<Crime> crimes) { //Listing 14.20
             mCrimes = crimes;
-
             for (Crime crime : crimes) {
                 UUID id = crime.getId();
-                Log.i("setCrimes", String.valueOf(id));
+                Log.i(TAG, String.valueOf(id));
             }
         }
 
         public void deleteItem(int position) {
-            Log.i("deleteItem", String.valueOf(position));
-
+            Log.i(TAG, "calling deleteItem(int position) = "+String.valueOf(position));
             Crime crime = mCrimes.get(position);
-
             mLastUpdatedPosition = position;
             CrimeLab.get(getActivity()).deleteCrime(crime);
             mCrimes.remove(position);
             notifyItemRemoved(position);
         }
-
-
     }//End of Inner
 
     /***********************Inner Class CrimeHolder*********************/
@@ -285,7 +278,6 @@ public class CrimeListFragment extends Fragment {
             //Challenge: Improving the List
             mSolvedImageView.setContentDescription(crime.isSolved()? getString(R.string.crime_list_with_handcuff_icon_description) :
                     getString(R.string.crime_list_no_handcuff_icon_description));
-
         }
     }//End Inner class
 
@@ -320,13 +312,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void bind(Crime crime){
             super.bind(crime);
-
             //Challenge: Improving the List
             mSolvedImageView.setContentDescription(crime.isSolved()? getString(R.string.crime_list_with_handcuff_icon_description) :
                     getString(R.string.crime_list_no_handcuff_icon_description));
-
         }
-
     }//End inner class
 
     /**
@@ -359,12 +348,10 @@ public class CrimeListFragment extends Fragment {
 
     public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
 
-
         public SwipeToDeleteCallback(CrimeAdapter adapter) {
             super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
             mAdapter = adapter;
         }
-
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -376,9 +363,5 @@ public class CrimeListFragment extends Fragment {
             int position = viewHolder.getAbsoluteAdapterPosition();
             mAdapter.deleteItem(position);
         }
-
-
-    }
-
-
-}//End of Outer class
+    }//End inner class
+}//End Outer class

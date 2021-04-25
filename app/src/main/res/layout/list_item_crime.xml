@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
+
     <TextView
         android:id="@+id/crime_date"
         android:layout_width="0dp"
