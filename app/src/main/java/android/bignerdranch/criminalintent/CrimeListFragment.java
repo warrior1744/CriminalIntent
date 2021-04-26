@@ -169,8 +169,10 @@ public class CrimeListFragment extends Fragment {
         if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
+           Log.i(TAG,"mAdapter == null, crimes= "+crimes);
         } else {
             mAdapter.setCrimes(crimes); //Listing 14.21
+            Log.i(TAG,"mAdapter != null, crimes= "+crimes);
             /**Explaination: When we added a new Crime on the onOptionsItemSelected() method,
              we didn't explicitly update the crimes data for the Adapter, surely the object was added
              to the List, but the Adapter didn't, so we to set the updated crimes for the Adapter,
@@ -195,28 +197,44 @@ public class CrimeListFragment extends Fragment {
 
         private List<Crime> mCrimes;
         public CrimeAdapter(List<Crime> crimes) {
+            Log.i(TAG, "CrimeAdapter(List<Crime> crimes) is called ");
             mCrimes = crimes;
         }
 
         @NonNull
         @Override
         public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+
+            View crimeItemView = LayoutInflater.from(getActivity()).inflate(R.layout.list_item_crime,parent,false);
+            View crimeItemViewSerious = LayoutInflater.from(getActivity()).inflate(R.layout.list_item_crime_serious,parent,false);
+
             if (viewType == 1) {
-                return new NormalCrimeHolder(layoutInflater, parent);
+                Log.i(TAG, "onCreateViewHolder(), NormalCrimeHolder() is called ");
+                return new NormalCrimeHolder(crimeItemView);
             } else {
-                return new SeriousCrimeHolder(layoutInflater, parent);
+                Log.i(TAG, "onCreateViewHolder(), SeriouseCrimeHolder() is called ");
+                return new SeriousCrimeHolder(crimeItemViewSerious);
             }
         }
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
+/*
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int pos) {
+                if (holder instanceof MyViewHolder1) {
+                    // bind data to the views of MyViewHolder1
+                }
+            }
+ */
             Crime crime = mCrimes.get(position);
+            Log.i(TAG, "onBindViewHolder() is called, crime is "+crime);
             holder.bind(crime);
         }
 
         @Override
         public int getItemCount() {
+            Log.i(TAG, "getItemCount is called ");
             return mCrimes.size();
         }
 
@@ -226,11 +244,15 @@ public class CrimeListFragment extends Fragment {
          */
         @Override
         public int getItemViewType(int position) {
+
             if (mCrimes.get(position).isSerious()) {
+                Log.i(TAG, "getItemViewType() is called, returning Type = 0");
                 return 0;
             } else {
+                Log.i(TAG, "getItemViewType() is called, returning Type = 1");
                 return 1;
             }
+
         }
 
         public void setCrimes(List<Crime> crimes) { //Listing 14.20
@@ -242,7 +264,7 @@ public class CrimeListFragment extends Fragment {
         }
 
         public void deleteItem(int position) {
-            Log.i(TAG, "calling deleteItem(int position) = "+String.valueOf(position));
+            Log.i(TAG, "deleteItem() is called,position = "+String.valueOf(position));
             Crime crime = mCrimes.get(position);
             mLastUpdatedPosition = position;
             CrimeLab.get(getActivity()).deleteCrime(crime);
@@ -254,8 +276,10 @@ public class CrimeListFragment extends Fragment {
     /***********************Inner Class CrimeHolder*********************/
     private class NormalCrimeHolder extends CrimeHolder {
 
-        public NormalCrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater, parent, R.layout.list_item_crime);
+        public NormalCrimeHolder(View itemView) {
+
+            super(itemView);
+            Log.i(TAG, "NormalCrimeHolder() is called");
         }//End NormalCrimeHolder's Constructor
 
         @Override
@@ -275,6 +299,7 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void bind(Crime crime){
             super.bind(crime);
+            Log.i(TAG, "NormalCrimeHolder, bind() is called ");
             //Challenge: Improving the List
             mSolvedImageView.setContentDescription(crime.isSolved()? getString(R.string.crime_list_with_handcuff_icon_description) :
                     getString(R.string.crime_list_no_handcuff_icon_description));
@@ -286,8 +311,9 @@ public class CrimeListFragment extends Fragment {
 
         private Button mButtonSerious;
 
-        public SeriousCrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater, parent, R.layout.list_item_crime_serious);
+        public SeriousCrimeHolder(View itemView) {
+            super(itemView);
+            Log.i(TAG, "SeriousCrimeHolder() is called");
             mButtonSerious = (Button) itemView.findViewById(R.id.crime_contact);
             mButtonSerious.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -312,6 +338,7 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void bind(Crime crime){
             super.bind(crime);
+            Log.i(TAG, "SeriousCrimeHolder, bind() is called ");
             //Challenge: Improving the List
             mSolvedImageView.setContentDescription(crime.isSolved()? getString(R.string.crime_list_with_handcuff_icon_description) :
                     getString(R.string.crime_list_no_handcuff_icon_description));

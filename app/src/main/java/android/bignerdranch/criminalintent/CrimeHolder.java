@@ -34,12 +34,11 @@ public abstract class CrimeHolder extends RecyclerView.ViewHolder implements Vie
     }
 
     //We add one additional parameter in order to find out what different kinds of layout we're using.
-    public CrimeHolder(LayoutInflater inflater, ViewGroup parent, int layout) {
-        super(inflater.inflate(layout, parent, false));
+    public CrimeHolder(View itemView) {
+        super(itemView);
         /**Set each View that answer for onClickListener. We can modify the ViewHolder class
          * to implement the onClick Interface*/
         itemView.setOnClickListener(this);//itemView is the View for the entire row.
-
         mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
         mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
         mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
@@ -53,11 +52,10 @@ public abstract class CrimeHolder extends RecyclerView.ViewHolder implements Vie
         //  String newDate = mCrime.getDate().toString();
         String dateFormat = DateFormat.getBestDateTimePattern(Locale.getDefault(), "EEEE MMMMM dd日  yyyy年 aa HH時 mm分");
         //java.text.DateFormat mDateFormat = DateFormat.getDateFormat(getAppContext());
-      //  String newDateFormat = mDateFormat.format(mCrime.getDate());
+        //  String newDateFormat = mDateFormat.format(mCrime.getDate());
 
         CharSequence newDate = DateFormat.format(dateFormat, mCrime.getDate());
-       mDateTextView.setText(newDate);
-
+        mDateTextView.setText(newDate);
         mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
 
 

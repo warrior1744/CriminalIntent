@@ -75,8 +75,6 @@ public class CrimeLab {
         return values;
     }
 
-
-
     /**
      * add, remove, and update Crime object
      */
@@ -98,7 +96,6 @@ public class CrimeLab {
                 new String[]{uuidString}); //similar to WHERE statement
     }
 
-
     public void updateCrime(Crime crime) { //Listing 14.10
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);
@@ -109,9 +106,6 @@ public class CrimeLab {
                 new String[]{uuidString});  //similar to WHERE statement
     }
     /*****************************************/
-
-
-
 
     public List<Crime> getCrimes() { //Listing 14.18
         //     return new ArrayList<>(mCrimes.values());//using mDatabase instead
@@ -146,8 +140,6 @@ public class CrimeLab {
         return new CrimeCursorWrapper(cursor);
     }//End queryCrimes()
 
-
-
     public Crime getCrime(UUID id) {
         /*
         for (Crime crime : mCrimes) {
@@ -173,7 +165,6 @@ public class CrimeLab {
         }
     }//Close getCrime()
     /*****************************************/
-
 
     //Listing 16.6 Finding photo file location
     public File getPhotoFile(Crime crime){
