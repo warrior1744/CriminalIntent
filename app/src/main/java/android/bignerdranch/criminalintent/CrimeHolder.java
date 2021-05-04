@@ -27,8 +27,6 @@ public abstract class CrimeHolder extends RecyclerView.ViewHolder implements Vie
     public ImageView mSolvedImageView;
     Crime mCrime;
 
-
-
     public void CrimeHolder() {
         //Default constructor
     }
